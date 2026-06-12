@@ -1,0 +1,33 @@
+{
+    "name": "brainbyte/lawyerdirectory",
+    "description": "",
+    "authors": [
+        {
+            "name": "kamruzzaman",
+            "email": "brainbyte@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Modules\\LawyerDirectory\\": "app/",
+            "App\\Modules\\LawyerDirectory\\Database\\Factories\\": "database/factories/",
+            "App\\Modules\\LawyerDirectory\\Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Modules\\LawyerDirectory\\Tests\\": "tests/"
+        }
+    }
+}

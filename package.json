@@ -1,0 +1,25 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "sass": "",
+
+        "colorBuild": "",
+        "sassWatch": "",
+        "dirBuild": "",
+
+        "dev": "",
+        "development": "",
+        "watch": "",
+        "watch-poll": "",
+        "hot": "",
+        "prod": "",
+        "production": ""
+    },
+    "devDependencies": {
+
+    },
+    "dependencies": {
+
+    }
+}
