@@ -2,11 +2,10 @@
 
 namespace App\Modules\Lawyer\Models;
 
-use App\Modules\Lawyer\Models\Lawyer;
 use App\Modules\Lawyer\Services\Config\Admin\LocationConfig;
 use App\Traits\QueryCacheable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Location extends Model
 {
@@ -21,9 +20,10 @@ class Location extends Model
         'description',
     ];
 
-    public function lawyers(): HasMany
+    public function lawyers(): BelongsToMany
     {
-        return $this->hasMany(Lawyer::class, 'location');
+        return $this->belongsToMany(Lawyer::class, 'lawd_lawyer_location')
+            ->withTimestamps();
     }
 
     public function getConfigClass(): string

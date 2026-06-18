@@ -33,11 +33,11 @@ class LawyerConfig
                     'orderable' => true,
                 ],
                 [
-                    'key' => 'location_rel.name',
-                    'label' => __('Location'),
+                    'key' => 'locations',
+                    'label' => __('Locations'),
                     'searchable' => true,
-                    'orderable' => true,
-                    'formatfn' => fn($item) => $item->locationRel?->name ?? '',
+                    'orderable' => false,
+                    'formatfn' => fn($item) => $item->locations->pluck('name')->join(', '),
                 ],
                 [
                     'key' => 'contact_number',
@@ -195,9 +195,10 @@ class LawyerConfig
                 ],
                 [
                     [
-                        'key' => 'location',
-                        'label' => __('Location'),
+                        'key' => 'locations',
+                        'label' => __('Locations'),
                         'type' => 'select',
+                        'multiple' => true,
                         'required' => false,
                         'col' => 6,
                         'options' => [

@@ -5,7 +5,7 @@ namespace App\Modules\Lawyer\Models;
 use App\Modules\Lawyer\Services\Config\Admin\LawyerConfig;
 use App\Traits\QueryCacheable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Lawyer extends Model
 {
@@ -17,7 +17,6 @@ class Lawyer extends Model
         'name',
         'photo',
         'practice_areas',
-        'location',
         'address',
         'about_overview',
         'contact_number',
@@ -33,9 +32,10 @@ class Lawyer extends Model
         'featured_date_setup' => 'date',
     ];
 
-    public function locationRel(): BelongsTo
+    public function locations(): BelongsToMany
     {
-        return $this->belongsTo(Location::class, 'location');
+        return $this->belongsToMany(Location::class, 'lawd_lawyer_location')
+            ->withTimestamps();
     }
 
     public function getConfigClass(): string

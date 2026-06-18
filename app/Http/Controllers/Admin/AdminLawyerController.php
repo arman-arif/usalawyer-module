@@ -17,7 +17,7 @@ class AdminLawyerController extends ProjectBaseController
 
     public function index()
     {
-        $query = Lawyer::query()->with('locationRel')->latest();
+        $query = Lawyer::query()->with('locations')->latest();
 
         return parent::index($query);
     }
@@ -31,7 +31,14 @@ class AdminLawyerController extends ProjectBaseController
                 $data['photo'] = $request->file('photo')->store('lawyers/photos', 'lawyer_local');
             }
 
-            Lawyer::create($data);
+            $locations = $data['locations'] ?? [];
+            unset($data['locations']);
+
+            $lawyer = Lawyer::create($data);
+
+            if (!empty($locations)) {
+                $lawyer->locations()->sync($locations);
+            }
 
             return redirect()->route('lawyer.admin.lawyers.index')
                 ->with('success', __('Lawyer created successfully.'));
@@ -53,7 +60,11 @@ class AdminLawyerController extends ProjectBaseController
                 unset($data['photo']);
             }
 
+            $locations = $data['locations'] ?? [];
+            unset($data['locations']);
+
             $lawyer->update($data);
+            $lawyer->locations()->sync($locations);
 
             return redirect()->route('lawyer.admin.lawyers.index')
                 ->with('success', __('Lawyer updated successfully.'));
