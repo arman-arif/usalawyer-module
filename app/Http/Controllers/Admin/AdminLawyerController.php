@@ -17,7 +17,7 @@ class AdminLawyerController extends ProjectBaseController
 
     public function index()
     {
-        $query = Lawyer::query()->with('locations')->latest();
+        $query = Lawyer::query()->with(['locations', 'categories', 'subCategories'])->latest();
 
         return parent::index($query);
     }
@@ -32,13 +32,15 @@ class AdminLawyerController extends ProjectBaseController
             }
 
             $locations = $data['locations'] ?? [];
-            unset($data['locations']);
+            $categories = $data['categories'] ?? [];
+            $subCategories = $data['sub_categories'] ?? [];
+            unset($data['locations'], $data['categories'], $data['sub_categories']);
 
             $lawyer = Lawyer::create($data);
 
-            if (!empty($locations)) {
-                $lawyer->locations()->sync($locations);
-            }
+            $lawyer->locations()->sync($locations);
+            $lawyer->categories()->sync($categories);
+            $lawyer->subCategories()->sync($subCategories);
 
             return redirect()->route('lawyer.admin.lawyers.index')
                 ->with('success', __('Lawyer created successfully.'));
@@ -61,10 +63,14 @@ class AdminLawyerController extends ProjectBaseController
             }
 
             $locations = $data['locations'] ?? [];
-            unset($data['locations']);
+            $categories = $data['categories'] ?? [];
+            $subCategories = $data['sub_categories'] ?? [];
+            unset($data['locations'], $data['categories'], $data['sub_categories']);
 
             $lawyer->update($data);
             $lawyer->locations()->sync($locations);
+            $lawyer->categories()->sync($categories);
+            $lawyer->subCategories()->sync($subCategories);
 
             return redirect()->route('lawyer.admin.lawyers.index')
                 ->with('success', __('Lawyer updated successfully.'));

@@ -38,6 +38,18 @@ class Lawyer extends Model
             ->withTimestamps();
     }
 
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class, 'lawd_lawyer_category')
+            ->withTimestamps();
+    }
+
+    public function subCategories(): BelongsToMany
+    {
+        return $this->belongsToMany(SubCategory::class, 'lawd_lawyer_sub_category')
+            ->withTimestamps();
+    }
+
     public function getConfigClass(): string
     {
         return LawyerConfig::class;

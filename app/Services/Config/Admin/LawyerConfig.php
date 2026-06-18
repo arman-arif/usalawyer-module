@@ -2,7 +2,9 @@
 
 namespace App\Modules\Lawyer\Services\Config\Admin;
 
+use App\Modules\Lawyer\Models\Category;
 use App\Modules\Lawyer\Models\Location;
+use App\Modules\Lawyer\Models\SubCategory;
 
 class LawyerConfig
 {
@@ -31,6 +33,20 @@ class LawyerConfig
                     'label' => __('Name'),
                     'searchable' => true,
                     'orderable' => true,
+                ],
+                [
+                    'key' => 'categories',
+                    'label' => __('Categories'),
+                    'searchable' => true,
+                    'orderable' => false,
+                    'formatfn' => fn($item) => $item->categories->pluck('name')->join(', '),
+                ],
+                [
+                    'key' => 'sub_categories',
+                    'label' => __('Sub-categories'),
+                    'searchable' => true,
+                    'orderable' => false,
+                    'formatfn' => fn($item) => $item->subCategories->pluck('name')->join(', '),
                 ],
                 [
                     'key' => 'locations',
@@ -111,7 +127,25 @@ class LawyerConfig
     {
         $locations = Location::query()
             ->orderBy('name')
-            ->get(['id', 'name']);
+            ->get(['id', 'name'])
+            ->map(fn($l) => ['key' => $l->id, 'label' => $l->name])
+            ->all();
+
+        $categories = Category::query()
+            ->orderBy('name')
+            ->get(['id', 'name'])
+            ->map(fn($c) => ['key' => $c->id, 'label' => $c->name])
+            ->all();
+
+        $subCategories = SubCategory::query()
+            ->with('category:id,name')
+            ->orderBy('name')
+            ->get(['id', 'name', 'category_id'])
+            ->map(fn($s) => [
+                'key' => $s->id,
+                'label' => $s->category ? $s->category->name.' → '.$s->name : $s->name,
+            ])
+            ->all();
 
         return [
             'forms' => [
@@ -186,11 +220,32 @@ class LawyerConfig
                 ],
                 [
                     [
-                        'key' => 'practice_areas',
-                        'label' => __('Practice Areas'),
-                        'type' => 'tags',
+                        'key' => 'categories',
+                        'label' => __('Categories'),
+                        'type' => 'select',
+                        'multiple' => true,
                         'required' => false,
                         'col' => 12,
+                        'options' => [
+                            'data' => $categories,
+                            'key' => 'key',
+                            'label' => 'label',
+                        ],
+                    ],
+                ],
+                [
+                    [
+                        'key' => 'sub_categories',
+                        'label' => __('Sub-categories'),
+                        'type' => 'select',
+                        'multiple' => true,
+                        'required' => false,
+                        'col' => 12,
+                        'options' => [
+                            'data' => $subCategories,
+                            'key' => 'key',
+                            'label' => 'label',
+                        ],
                     ],
                 ],
                 [
@@ -203,8 +258,8 @@ class LawyerConfig
                         'col' => 6,
                         'options' => [
                             'data' => $locations,
-                            'key' => 'id',
-                            'label' => 'name',
+                            'key' => 'key',
+                            'label' => 'label',
                         ],
                     ],
                     [
@@ -213,6 +268,15 @@ class LawyerConfig
                         'type' => 'date',
                         'required' => false,
                         'col' => 6,
+                    ],
+                ],
+                [
+                    [
+                        'key' => 'practice_areas',
+                        'label' => __('Practice Areas'),
+                        'type' => 'tags',
+                        'required' => false,
+                        'col' => 12,
                     ],
                 ],
                 [
