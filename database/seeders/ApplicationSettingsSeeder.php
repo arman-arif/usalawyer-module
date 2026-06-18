@@ -12,19 +12,15 @@ class ApplicationSettingsSeeder extends Seeder
     {
         $this->updateDefaultSettings();
 
-        $color_palettes = settings('color_palette', []);
-        $color_palettes = is_array($color_palettes) ? $color_palettes : json_decode($color_palettes, true);
+        $color_palettes = ApplicationSetting::where('slug', 'color_palette')->value('value');
+        $color_palettes = json_decode($color_palettes, true);
 
         foreach($color_palettes as $key => &$color_palette){
-            if($key == THEME_SKY){
-                $color_palette['is_default'] = true;
-            }else{
-                $color_palette['is_default'] = false;
-            }
+            $color_palette['is_default'] = $key == THEME_PURPLE;
         }
 
         $adminSettingArray = [
-            // 'color_palette' => $color_palettes,
+            'color_palette' => $color_palettes,
             'default_home_page_route'=> 'lawyer.index',
             'support_email' => '',
             'display_google_captcha' => ACTIVE,
