@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Modules\LawyerDirectory\Http\Controllers;
+namespace App\Modules\Lawyer\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LawyerDirectoryController extends Controller
+class LawyerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('lawyerdirectory::index');
+        return view('lawyer::index');
     }
 
     /**
@@ -20,7 +20,7 @@ class LawyerDirectoryController extends Controller
      */
     public function create()
     {
-        return view('lawyerdirectory::create');
+        return view('lawyer::create');
     }
 
     /**
@@ -36,7 +36,7 @@ class LawyerDirectoryController extends Controller
      */
     public function show($id)
     {
-        return view('lawyerdirectory::show');
+        return view('lawyer::show');
     }
 
     /**
@@ -44,7 +44,7 @@ class LawyerDirectoryController extends Controller
      */
     public function edit($id)
     {
-        return view('lawyerdirectory::edit');
+        return view('lawyer::edit');
     }
 
     /**

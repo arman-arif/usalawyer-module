@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Modules\LawyerDirectory\Http\Controllers\LawyerDirectoryController;
+use App\Modules\Lawyer\Http\Controllers\LawyerController;
 
 /*
  *--------------------------------------------------------------------------
@@ -15,5 +15,5 @@ use App\Modules\LawyerDirectory\Http\Controllers\LawyerDirectoryController;
 */
 
 Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('lawyerdirectory', LawyerDirectoryController::class)->names('lawyerdirectory');
+    Route::apiResource('lawyer', LawyerController::class)->names('lawyer');
 });

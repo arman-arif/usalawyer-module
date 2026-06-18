@@ -1,11 +1,11 @@
 {
-    "name": "LawyerDirectory",
-    "alias": "lawyerdirectory",
+    "name": "Lawyer",
+    "alias": "lawyer",
     "description": "",
     "keywords": [],
     "priority": 0,
     "providers": [
-        "App\\Modules\\LawyerDirectory\\Providers\\LawyerDirectoryServiceProvider"
+        "App\\Modules\\Lawyer\\Providers\\LawyerServiceProvider"
     ],
     "files": []
 }

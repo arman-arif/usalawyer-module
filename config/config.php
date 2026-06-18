@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'name' => 'LawyerDirectory',
+    'name' => 'Lawyer',
     'route_prefix' => '',
 ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\LawyerDirectory\Database\Seeders;
+namespace App\Modules\Lawyer\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 

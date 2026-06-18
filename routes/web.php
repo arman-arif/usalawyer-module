@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Modules\LawyerDirectory\Http\Controllers\LawyerDirectoryController;
+use App\Modules\Lawyer\Http\Controllers\LawyerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +15,5 @@ use App\Modules\LawyerDirectory\Http\Controllers\LawyerDirectoryController;
 */
 
 Route::group([], function () {
-    Route::resource('lawyerdirectory', LawyerDirectoryController::class)->names('lawyerdirectory');
+    Route::resource('lawyer', LawyerController::class)->names('lawyer');
 });

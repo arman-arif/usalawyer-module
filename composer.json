@@ -1,10 +1,10 @@
 {
-    "name": "brainbyte/lawyerdirectory",
+    "name": "arifuldev/lawyer",
     "description": "",
     "authors": [
         {
-            "name": "kamruzzaman",
-            "email": "brainbyte@gmail.com"
+            "name": "Ariful Islam",
+            "email": "hello@ariful.dev"
         }
     ],
     "extra": {
@@ -17,17 +17,18 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\Modules\\LawyerDirectory\\": "app/",
-            "App\\Modules\\LawyerDirectory\\Database\\Factories\\": "database/factories/",
-            "App\\Modules\\LawyerDirectory\\Database\\Seeders\\": "database/seeders/"
+            "App\\Modules\\Lawyer\\": "app/",
+            "App\\Modules\\Lawyer\\Database\\Factories\\": "database/factories/",
+            "App\\Modules\\Lawyer\\Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-
+            "app/Helpers/constants.php",
+            "app/Helpers/helpers.php"
         ]
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Modules\\LawyerDirectory\\Tests\\": "tests/"
+            "App\\Modules\\Lawyer\\Tests\\": "tests/"
         }
     }
 }

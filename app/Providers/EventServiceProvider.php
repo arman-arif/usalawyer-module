@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\LawyerDirectory\Providers;
+namespace App\Modules\Lawyer\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

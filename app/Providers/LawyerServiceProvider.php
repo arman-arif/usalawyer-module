@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\LawyerDirectory\Providers;
+namespace App\Modules\Lawyer\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -9,13 +9,13 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use File;
 
-class LawyerDirectoryServiceProvider extends ServiceProvider
+class LawyerServiceProvider extends ServiceProvider
 {
     use PathNamespace;
 
-    protected string $name = 'LawyerDirectory';
+    protected string $name = 'Lawyer';
 
-    protected string $nameLower = 'lawyerdirectory';
+    protected string $nameLower = 'lawyer';
 
     /**
      * Boot the application events.
