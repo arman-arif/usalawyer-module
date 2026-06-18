@@ -1,7 +1,7 @@
-@extends(config('modules.is_module_layout') == true ? "lawyer::layouts.master" : 'layouts.master', ['backendLayout' => config('modules.is_backend_layout')])
-@section('header-title', "lawyer List")
+@extends("lawyer::layouts.master", ['backendLayout' => false])
+@section('header-title', "USA Lawyer Directory")
 @section('content')
-    <h1>Index Blade</h1>
-
-    <p>Module: {!! config('lawyer.config.name') !!}</p>
+    <div class="container my-5">
+        <h1>Home Page</h1>
+    </div>
 @endsection
