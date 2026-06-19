@@ -11,6 +11,7 @@ return [
             'visibility' => 'public',
         ],
     ],
+    'default_disk' => 'lawyer_local',
     'navigation' => [
         'backend-nav' => [
             [

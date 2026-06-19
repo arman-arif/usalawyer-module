@@ -28,7 +28,7 @@ class AdminLawyerController extends ProjectBaseController
             $data = $request->validated();
 
             if ($request->hasFile('photo')) {
-                $data['photo'] = $request->file('photo')->store('lawyers/photos', 'lawyer_local');
+                $data['photo'] = lawyer_upload_file($request->file('photo'), 'uploads/photos');
             }
 
             $locations = $data['locations'] ?? [];

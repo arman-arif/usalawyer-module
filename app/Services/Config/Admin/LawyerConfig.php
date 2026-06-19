@@ -25,7 +25,7 @@ class LawyerConfig
                     'orderable' => false,
                     'class' => 'text-center',
                     'formatfn' => fn($item) => $item->photo
-                        ? '<img src="'.asset('storage/'.$item->photo).'" alt="" style="width:40px;height:40px;object-fit:cover;border-radius:50%;">'
+                        ? '<img src="'.get_avatar($item->photo).'" alt="" style="width:40px;height:40px;object-fit:cover;border-radius:50%;">'
                         : '',
                 ],
                 [
@@ -74,12 +74,12 @@ class LawyerConfig
                     'searchable' => true,
                     'orderable' => true,
                     'class' => 'text-center',
-                    'formatfn' => fn($item) => $item->is_paid
+                    'formatfn' => fn($item) => view_html($item->is_paid
                         ? '<span class="badge bg-success">'.__('Yes').'</span>'
-                        : '<span class="badge bg-secondary">'.__('No').'</span>',
+                        : '<span class="badge bg-secondary">'.__('No').'</span>'),
                 ],
                 [
-                    'key' => 'practice_areas',
+                    'key' => 'practice_area',
                     'label' => __('Practice Areas'),
                     'searchable' => false,
                     'orderable' => false,

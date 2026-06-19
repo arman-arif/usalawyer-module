@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
              ApplicationSettingsSeeder::class,
              LocationsTableSeeder::class,
              CategoriesTableSeeder::class,
+             LawyersTableSeeder::class,
          ]);
     }
 }
